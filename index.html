@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数独</title>
+</head>
+<style>
+    .canvasContent{
+        width: 360px;
+        height: 360px;
+        border: 3px solid gray;
+        box-sizing: content-box;
+    }
+    .canvas-row{
+        width: 100%;
+        
+    }
+    .cell{
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        text-align: center;
+        border: 1px solid gray;
+        box-sizing: border-box;
+    }
+    .cell-color{
+        border: 1px solid red;
+        background: #fbd8d8;
+    }
+</style>
+<body>
+    <!-- 按钮操作区域 -->
+    <button class=""  onclick="start()">开始游戏</button>
+    <button class=""  onclick="reStart()">重新游戏</button>
+    <select name="选择游戏难度" id="select" onchange="selectChange()"></select>
+    <p>得分<span class="score">0</span></p>
+    <!-- 游戏区域 -->
+    <div class="canvasContent" id="canvasContent">
+        <!-- 游戏渲染区域 -->
+    </div>
+    <!-- 提交游戏 -->
+    <button onclick="submit()">提交</button>
+</body>
+<script type="text/javascript" src="js/create.js"></script>
+<script type="text/javascript" src="js/game.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+</html>
