@@ -42,14 +42,47 @@ var Game = function(){
                 if(Arr[i][j]){
                     str += `<span class='cell'>${Arr[i][j]}</span>`
                 }else{
-                    str += `<span class='cell cell${i}${j} cell-color' contenteditable="true">${Arr[i][j]}</span>`
+                    str += `<span class='cell cell${i}${j} cell-color' contenteditable="true" data='${i},${j}'>${Arr[i][j]}</span>`
                 }
             }
             str +=`</div>`
+            if((i+1)%3 == 0){
+                str +=`<hr class="grap-hr"/>`
+            }
         }
         content.innerHTML = str;
+        editCell();
     }
-    
+    /**
+     * @description 输入过程中，样式动态修改
+    */
+    function editCell(){
+        document.getElementById("canvasContent").addEventListener("click", function(e) {
+            // 检查事件源e.targe是否为A
+            if(e.target && e.target.className.includes('cell-color')) {
+                let elementData = e.target.getAttribute('data');
+                // 获取到当前点击的行列坐标
+                let row = elementData[0];
+                let colum = elementData[2];
+                // 现在需要做样式渲染
+                let cellList = document.getElementsByClassName("cell");
+                let cellBox = 0;
+                for(let i=0;i<cellList.length;i++){
+                    cellList[i].classList.remove("cell-item")
+                    // 同行同列开始渲染颜色
+                    if((i>=row*9 && i<(row*9+9)) || i%9 == colum){
+                        cellList[i].classList.add("cell-item")
+                    }
+                    // 3*3格子开始渲染颜色
+                    if(Math.floor(i/27) == Math.floor(row/3)){
+                        if(Math.floor((i%9)/3)>=Math.floor(colum/3) && Math.floor((i%9)/3)<Math.floor(colum/3)+1){
+                            cellList[i].classList.add("cell-item")
+                        }
+                    }
+                }
+            }
+          });
+    }
     /**
      * @description 游戏可编辑块输入内容捕捉,并进行空和正确输入内容校验
      * */ 
