@@ -9,7 +9,7 @@
 <style>
     .canvasContent{
         width: 360px;
-        height: 360px;
+        min-height: 360px;
         border: 3px solid gray;
         box-sizing: content-box;
     }
@@ -24,6 +24,18 @@
         text-align: center;
         border: 1px solid gray;
         box-sizing: border-box;
+    }
+    .cell:nth-child(3n){
+        border-right: 3px solid green;
+    }
+    .grap-hr{
+        margin: 0;
+        padding: 0;
+        border: none;
+        border-bottom: 3px solid green;
+    }
+    .cell-item{
+        background: #d7fae9;
     }
     .cell-color{
         border: 1px solid red;
